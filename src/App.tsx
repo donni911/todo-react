@@ -85,9 +85,9 @@ function App() {
     });
   };
 
-  const handleToggleItem = async (id: number) => {
+  const handleToggleItem = async (isChecked: boolean, id: number) => {
     try {
-      await toggleChecked(id);
+      await toggleChecked(isChecked, id);
       setItems((prevItems) =>
         prevItems.map((item) =>
           item.id === id ? { ...item, done: !item.done } : item

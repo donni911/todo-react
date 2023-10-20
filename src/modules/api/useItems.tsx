@@ -46,19 +46,16 @@ const addItem = async (obj: object) => {
   }
 };
 
-const toggleChecked = async (id: number) => {
+const toggleChecked = async (isChecked: boolean, id: number) => {
   try {
-    const response = await fetch(`http://localhost:3000/items/${id}`);
-    const currentItem = await response.json();
-
-    const updatedItem = { ...currentItem, done: !currentItem.done };
-
     const patchResponse = await fetch(`http://localhost:3000/items/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedItem),
+      body: JSON.stringify({
+        done: isChecked,
+      }),
     });
 
     if (!patchResponse.ok) {

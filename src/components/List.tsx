@@ -4,7 +4,7 @@ import { DeleteIcon } from "@chakra-ui/icons";
 interface Props {
   items: Array<{ id: number; title: string; done: boolean }>;
   onDelete: (id: number) => void;
-  onToggleChecked: (e: any) => void;
+  onToggleChecked: (e: any, id: number) => void;
 }
 
 const List = ({ items, onDelete, onToggleChecked }: Props) => {
@@ -19,12 +19,13 @@ const List = ({ items, onDelete, onToggleChecked }: Props) => {
             alignItems={"center"}
             borderRadius={"md"}
             w={"100%"}
+            background={"black "}
             p={2}
           >
             <Checkbox
               colorScheme="green"
               defaultChecked={item.done}
-              onChange={(e) => e.target.checked && onToggleChecked(item.id)}
+              onChange={(e) => onToggleChecked(e.target.checked, item.id)}
             >
               {item.title}
             </Checkbox>
